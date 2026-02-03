@@ -44,11 +44,11 @@ TagManager:
   - name: Ground
     uniqueID: 3149202273
     locked: 0
-  - name: WalkInFront
-    uniqueID: 3008427669
-    locked: 0
   - name: Collide
     uniqueID: 2194164041
+    locked: 0
+  - name: WalkInFront
+    uniqueID: 3008427669
     locked: 0
   - name: Decor
     uniqueID: 1844414297

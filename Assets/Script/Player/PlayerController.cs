@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
-    public float interactDis = 1.2f;
+    public float interactRad = 1f;
     public LayerMask interactableLayer;
     public GameObject interactIcon;
 
@@ -50,9 +52,9 @@ public class PlayerController : MonoBehaviour
     }
     void CheckInteractable()
     {
-        RaycastHit2D hit = Physics2D.Raycast(rb.position, lastMoveDir, interactDis, interactableLayer);
+        Collider2D hit = Physics2D.OverlapCircle(transform.position, interactRad, interactableLayer);
 
-        if(hit.collider != null && hit.collider.GetComponent<IInteractable>()  != null)
+        if(hit != null && hit.GetComponent<IInteractable>() != null)
         {
             if (interactIcon != null) interactIcon.SetActive(true);
         }
@@ -63,11 +65,11 @@ public class PlayerController : MonoBehaviour
     }
     void PerformInteraction()
     {
-        RaycastHit2D hit = Physics2D.Raycast(rb.position, lastMoveDir, interactDis, interactableLayer);
+        Collider2D hit = Physics2D.OverlapCircle(transform.position, interactRad, interactableLayer);
 
-        if(hit.collider != null)
+        if (hit != null)
         {
-            IInteractable target = hit.collider.GetComponent<IInteractable>();
+            IInteractable target = hit.GetComponent<IInteractable>();
             target?.Interact();
         }
     }
@@ -78,8 +80,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.yellow;
-        Vector2 direction = lastMoveDir == Vector2.zero ? Vector2.down : lastMoveDir;
-        Gizmos.DrawRay(transform.position, direction * interactDis);
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, interactRad);
     }
 }

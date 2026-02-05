@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public float interactRad = 1f;
     public LayerMask interactableLayer;
     public GameObject interactIcon;
+    public bool canMove = true;
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -23,6 +24,12 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
+        if (!canMove)
+        {
+            moveInput = Vector2.zero;
+            anim.SetFloat("Speed", 0); // 멈춘 애니메이션 강제 적용
+            return;
+        }
         // 1. 입력 받기 (WASD / 화살표)
         moveInput.x = Input.GetAxisRaw("Horizontal");
         moveInput.y = Input.GetAxisRaw("Vertical");
@@ -75,7 +82,7 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        // 3. 물리 이동
+        if (!canMove) return;
         rb.MovePosition(rb.position + moveInput * moveSpeed * Time.fixedDeltaTime);
     }
     private void OnDrawGizmos()

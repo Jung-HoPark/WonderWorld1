@@ -279,6 +279,54 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1083414754076991448, guid: a1f3e13888501c74c85c9daebf7f1a44, type: 3}
   m_PrefabInstance: {fileID: 8482809859028691486}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1057698948
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1057698950}
+  - component: {fileID: 1057698949}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1057698949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1057698948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6df60ab4dc34bc847b5e350332e004bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerRes: {fileID: 11400000, guid: 9d9a12416cadec241ba2a124529f4cf8, type: 2}
+  introSceneName: StartOnlyOnce
+  stage1Name: Stage1
+  stage2Name: Stage2
+--- !u!4 &1057698950
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1057698948}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 210.20001, y: 165.8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1349479580
 GameObject:
   m_ObjectHideFlags: 0
@@ -548,6 +596,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 1349479583}
   - {fileID: 210514662}
+  - {fileID: 1057698950}
   - {fileID: 8482809859028691486}
   - {fileID: 705951510}
   - {fileID: 1628968448}

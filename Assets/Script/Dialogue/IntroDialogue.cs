@@ -8,6 +8,7 @@ public class IntroDialogue : MonoBehaviour
     public List<DialogueLine> introLines;
     void Start()
     {
+        if (PlayerPrefs.GetInt("IntroPlayed", 0) == 1) return;
         Invoke("TriggerIntro", 0.5f);
     }
     void TriggerIntro()

@@ -7,13 +7,25 @@ public class PlayerResourceManager : ScriptableObject
 {
     [Header("Shared Resources")]
     public int playerHp;
-    public int maxPlayerHp;
     public float playerMp;
-    public float maxPlayerMp;
     public int Exp;
+
+    [Header("Default Settings")]
+    public int maxPlayerHp;
+    public int initPlayerHp;
+    public float maxPlayerMp;
+    public float initPlayerMp;
 
     public Action OnResourceChange;
 
+    public void ResetData()
+    {
+        playerHp = initPlayerHp;
+        playerMp = initPlayerMp;
+        Exp = 0;
+        // UI에 초기화된 값을 알림
+        OnResourceChange?.Invoke();
+    }
     public void ChangeHp(int amount)
     {
         playerHp = Mathf.Clamp(playerHp + amount, 0, maxPlayerHp);

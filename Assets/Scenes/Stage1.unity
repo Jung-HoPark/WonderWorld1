@@ -899,7 +899,7 @@ GameObject:
   - component: {fileID: 251508593}
   - component: {fileID: 251508592}
   - component: {fileID: 251508591}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BoneDog (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1514,7 +1514,7 @@ GameObject:
   - component: {fileID: 529144250}
   - component: {fileID: 529144249}
   - component: {fileID: 529144248}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BoneDog (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23596,7 +23596,7 @@ GameObject:
   - component: {fileID: 1543328800}
   - component: {fileID: 1543328799}
   - component: {fileID: 1543328798}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BoneDog
   m_TagString: Untagged
   m_Icon: {fileID: 0}

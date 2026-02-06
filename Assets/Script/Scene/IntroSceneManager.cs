@@ -7,6 +7,15 @@ public class IntroSceneManager : MonoBehaviour
 {
     public DialogueManager dialogueManager;
     public string nextSceneName = "Stage1";
+
+    void Awake()
+    {
+        // 테스트용: 게임을 켤 때마다 인트로를 다시 보고 싶다면 주석 해제
+        // IntroDialogue.hasPlayedIntro = false; 
+
+        // 영구 저장된 기록을 지우고 싶을 때 (PlayerPrefs)
+        // PlayerPrefs.DeleteKey("IntroPlayed"); 
+    }
     // Start is called before the first frame update
     void Start()
     {

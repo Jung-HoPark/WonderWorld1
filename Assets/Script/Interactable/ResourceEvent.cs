@@ -15,12 +15,16 @@ public class ResourceEvent : MonoBehaviour, IInteractable
 
     [Header("횟수 및 파괴 설정")]
     public int maxUseCount;
-    private int currentUseCount = 0;
+    private int currentUseCount;
     public bool destroyAfterInteract = true;
 
     [Header("상호작용 대화")]
     public List<DialogueLine> eventDialogue;
     
+    void Start()
+    {
+        currentUseCount = 0;
+    }
     public void Interact()
     {
         if (currentUseCount >= maxUseCount)

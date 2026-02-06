@@ -274,6 +274,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1054304244 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1083414754076991448, guid: a1f3e13888501c74c85c9daebf7f1a44, type: 3}
+  m_PrefabInstance: {fileID: 8482809859028691486}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1349479580
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,6 +493,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TalkManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4118385964002433820, guid: a1f3e13888501c74c85c9daebf7f1a44, type: 3}
+      propertyPath: dialoguePanel
+      value: 
+      objectReference: {fileID: 1054304244}
     - target: {fileID: 4657965590431629270, guid: a1f3e13888501c74c85c9daebf7f1a44, type: 3}
       propertyPath: m_LocalPosition.x
       value: 230.39929

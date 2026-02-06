@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using System;
 using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
@@ -13,6 +14,7 @@ public class DialogueManager : MonoBehaviour
     private Queue<DialogueLine> sentences;
     private bool isTyping = false;
     private string currentSentence;
+    public Action OnDialogueComplete;
 
     private void Awake()
     {
@@ -70,6 +72,8 @@ public class DialogueManager : MonoBehaviour
     {
         if (player != null) player.canMove = true;
         dialoguePanel.SetActive(false);
+        OnDialogueComplete?.Invoke();
+        OnDialogueComplete = null;
         Debug.Log("대화 종료");
 
         IntroSceneManager introManager = FindObjectOfType<IntroSceneManager>();

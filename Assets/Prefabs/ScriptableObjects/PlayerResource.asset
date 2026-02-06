@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerResource
   m_EditorClassIdentifier: 
   playerHp: 3
-  maxPlayerHp: 3
+  maxPlayerHp: 5
   playerMp: 50
   maxPlayerMp: 100
   Exp: 0

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dd6f153284fb9d4a973ae74b6d4e5b9, type: 3}
+  m_Name: Duel
+  m_EditorClassIdentifier: 
+  characterName: "\uC628\uBCA8"
+  level: 1
+  hp: 70
+  atk: 3
+  amount: 2
+  amount2: 7
+  maxHp: 70
+  isDead: 0
+  modelPrefab: {fileID: 173717526454845208, guid: 8601793e21f5e7c4eb338b56c7334f16, type: 3}
+  skillList:
+  - {fileID: 11400000, guid: 7299e3d19dd12194fa54024c1517c468, type: 2}
+  - {fileID: 11400000, guid: be0914ad801b08d49b579f84ac2e3403, type: 2}
+  - {fileID: 11400000, guid: df4bf2cb794c1994aa536768d947bd5a, type: 2}

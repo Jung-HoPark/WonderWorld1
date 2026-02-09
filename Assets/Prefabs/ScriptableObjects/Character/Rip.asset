@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dd6f153284fb9d4a973ae74b6d4e5b9, type: 3}
+  m_Name: Rip
+  m_EditorClassIdentifier: 
+  characterName: "\uC0E4\uB860"
+  level: 1
+  hp: 50
+  atk: 6
+  amount: 5
+  amount2: 3
+  maxHp: 50
+  isDead: 0
+  modelPrefab: {fileID: 4004913036435507002, guid: b6aba7c8f0665774a95cf3a4ba3cf9bf, type: 3}
+  skillList:
+  - {fileID: 11400000, guid: e53fa6e8bd25d644d8a757d3043fefe5, type: 2}
+  - {fileID: 11400000, guid: 45e0fcae0d4e1ea45b90b1443a065c22, type: 2}
+  - {fileID: 11400000, guid: 9870bdf016ca7a548885227959706323, type: 2}

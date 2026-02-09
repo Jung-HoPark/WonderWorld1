@@ -9,10 +9,14 @@ public class CharacterData : ScriptableObject
     public int level;
     public float hp;
     public float atk;
-    public int amount;
-    public int amount2;
+    public int amount;  // 레벨업 시 hp 증가량
+    public int amount2;  // 레벨업 시 atk 증가량
     public float maxHp;
     public bool isDead;
+
+    [Header("Battle Settings")]
+    public GameObject modelPrefab;
+    public List<ActionData> skillList;
 
     public void LevelUp(PlayerResourceManager resource)
     {

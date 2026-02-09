@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dd6f153284fb9d4a973ae74b6d4e5b9, type: 3}
+  m_Name: Axe
+  m_EditorClassIdentifier: 
+  characterName: "\uD669"
+  level: 1
+  hp: 60
+  atk: 9
+  amount: 6
+  amount2: 5
+  maxHp: 60
+  isDead: 0
+  modelPrefab: {fileID: 5550210598934326760, guid: 7e48b6f64166bf3469b1b7498d218af4, type: 3}
+  skillList:
+  - {fileID: 11400000, guid: 110645dced798d74bafe7492c9ec9136, type: 2}
+  - {fileID: 11400000, guid: 027b4b9f3c241544eac30d79efbaaac1, type: 2}
+  - {fileID: 11400000, guid: 8dba661acf549664cae16ea225c594d8, type: 2}

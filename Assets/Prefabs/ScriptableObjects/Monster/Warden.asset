@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b209bc3706f1e794aa89291f69e7e89a, type: 3}
+  m_Name: Warden
+  m_EditorClassIdentifier: 
+  monsterName: "\uC218\uBB38\uC7A5"
+  hp: 500
+  maxHp: 500
+  atk: 20
+  expReward: 1000
+  isDead: 0
+  modelPrefab: {fileID: 6190299875667521304, guid: 3eca936e4f0377b47b9b93b080c96503, type: 3}
+  actionPool:
+  - {fileID: 11400000, guid: 523ae671022c7954dab5acfff0d91199, type: 2}
+  - {fileID: 11400000, guid: 056b1969881a0184c8c7c10069d32247, type: 2}
+  - {fileID: 11400000, guid: 6e3bf0fcf5b02a3429dc6bc6f1fb2762, type: 2}

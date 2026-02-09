@@ -1059,7 +1059,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 694300228, guid: 25320cdb70836be4eb6f5cb9a12f658e, type: 3}
+  m_Sprite: {fileID: -1593186757, guid: 25320cdb70836be4eb6f5cb9a12f658e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1831,7 +1831,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -492411673, guid: 25320cdb70836be4eb6f5cb9a12f658e, type: 3}
+  m_Sprite: {fileID: -1593186757, guid: 25320cdb70836be4eb6f5cb9a12f658e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2054,10 +2054,18 @@ MonoBehaviour:
   - {fileID: 2012111222}
   - {fileID: 1570954031}
   - {fileID: 509861936}
+  monsterSpawnPoint: {fileID: 0}
+  playerSpawnPoints: []
   commandButtons:
   - {fileID: 185832932}
   - {fileID: 332323857}
   - {fileID: 511956145}
+  damagePopupPrefab: {fileID: 5002354067499486018, guid: 35e5338361056d240b5bcee699f7855f, type: 3}
+  monsterUIAnchor: {fileID: 1398374830}
+  playerUIAnchors:
+  - {fileID: 1817552514}
+  - {fileID: 1926375234}
+  - {fileID: 1053286483}
 --- !u!4 &1926937888
 Transform:
   m_ObjectHideFlags: 0
@@ -2513,7 +2521,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1826717912, guid: 25320cdb70836be4eb6f5cb9a12f658e, type: 3}
+  m_Sprite: {fileID: -1593186757, guid: 25320cdb70836be4eb6f5cb9a12f658e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

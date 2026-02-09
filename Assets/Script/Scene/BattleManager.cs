@@ -23,8 +23,17 @@ public class BattleManager : MonoBehaviour
     public GameObject startBattleButton;
     public Image[] selectionSlots;
 
+    [Header("Spawn Points (Ref)")]
+    public Transform monsterSpawnPoint;
+    public Transform[] playerSpawnPoints;
+
     [Header("Skill Buttons")]
     public ActionButton[] commandButtons;
+
+    [Header("Effects")]
+    public GameObject damagePopupPrefab;
+    public Transform monsterUIAnchor;
+    public Transform[] playerUIAnchors;
 
     private int currentSelectionIndex = 0;
 
@@ -91,6 +100,10 @@ public class BattleManager : MonoBehaviour
     void ApplyDamageToMonster(int damage)
     {
         monsterBattler.TakeDamage(damage);
+        if (monsterSpawnPoint != null)
+        {
+            ShowDamagePopup(monsterSpawnPoint.position + Vector3.up * 1.5f, damage);
+        }
         Debug.Log($"{monsterBattler.name} HP: {monsterBattler.hp}");
 
         if (monsterBattler.isDead) WinBattle();
@@ -102,7 +115,28 @@ public class BattleManager : MonoBehaviour
         {
             var target = aliveOnes[Random.Range(0, aliveOnes.Count)];
             target.TakeDamage(damage);
-            Debug.Log($"{target.name}이(가) 공격당함! 남은 HP: {target.hp}");
+
+            int targetIdx = playerBattlers.IndexOf(target);
+
+            if (targetIdx >= 0 && targetIdx < playerSpawnPoints.Length)
+            {
+                ShowDamagePopup(playerSpawnPoints[targetIdx].position + Vector3.up * 1.5f, damage);
+            }
+        }
+    }
+    void ShowDamagePopup(Vector3 worldPosition, int damage)
+    {
+        GameObject popup = Instantiate(damagePopupPrefab);
+        Canvas mainCanvas = FindObjectOfType<Canvas>();
+        if (mainCanvas != null)
+        {
+            // 두 번째 인자를 'false'로 해야 프리팹에 설정한 크기가 유지됩니다.
+            popup.transform.SetParent(mainCanvas.transform, false);
+            Vector3 screenPos = Camera.main.WorldToScreenPoint(worldPosition);
+            screenPos.z = 0;
+            popup.transform.position = screenPos;
+            popup.GetComponent<DamagePopup>().Setup(damage);
+            popup.transform.localScale = Vector3.one;
         }
     }
     public void GenerateMonsterActions()

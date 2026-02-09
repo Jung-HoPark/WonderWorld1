@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Rip3
   m_EditorClassIdentifier: 
   actionName: 
-  damageValue: 0
+  damageValue: 18
+  costMp: 10
   actionIcon: {fileID: -1464481228, guid: 25320cdb70836be4eb6f5cb9a12f658e, type: 3}
   description: 

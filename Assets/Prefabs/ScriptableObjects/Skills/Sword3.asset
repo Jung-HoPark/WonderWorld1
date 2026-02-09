@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sword3
   m_EditorClassIdentifier: 
   actionName: "\uAC15\uACF5\uACA9"
-  damageValue: 20
-  costMp: 10
+  damageValue: 18
+  costMp: 20
   actionIcon: {fileID: 694300228, guid: 25320cdb70836be4eb6f5cb9a12f658e, type: 3}
   description: 

@@ -23,7 +23,20 @@ public class DialogueManager : MonoBehaviour
     }
     public void StartDialogue(List<DialogueLine> lines)
     {
-        if (player != null) player.canMove = false;
+        if (sentences == null) sentences = new Queue<DialogueLine>();
+        if (player == null) player = FindObjectOfType<PlayerController>();
+        if (player != null)
+        {
+            player.SetCanMove(false);
+            Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+            if (rb != null) rb.velocity = Vector2.zero;
+        }
+
+        if (dialoguePanel == null)
+        {
+            Debug.LogError("DialoguePanel이 할당되지 않았습니다!");
+            return;
+        }
 
         dialoguePanel.SetActive (true);
         sentences.Clear();
@@ -34,6 +47,14 @@ public class DialogueManager : MonoBehaviour
         }
 
         DisplayNextSentence();
+    }
+    void Update()
+    {
+        // 대화창이 켜져 있을 때만 입력 감지
+        if (dialoguePanel.activeSelf && Input.GetKeyDown(KeyCode.Space))
+        {
+            DisplayNextSentence();
+        }
     }
     public void DisplayNextSentence()
     {

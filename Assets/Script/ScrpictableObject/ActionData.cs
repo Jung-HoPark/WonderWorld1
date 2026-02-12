@@ -7,7 +7,7 @@ public class ActionData : ScriptableObject
 {
     public string actionName;
     public int damageValue;
-    public float costMp;
     public Sprite actionIcon;
     public string description;
+    public float manaCost;
 }

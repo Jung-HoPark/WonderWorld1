@@ -7,6 +7,7 @@ public class ResourceEvent : MonoBehaviour, IInteractable
     public PlayerResourceManager playerRes;
     public DialogueManager dialogueManager;
     public PlayerController player;
+    private bool isInteracting = false;
 
     [Header("자원 변경량")]
     public int hpChange;
@@ -27,6 +28,10 @@ public class ResourceEvent : MonoBehaviour, IInteractable
     }
     public void Interact()
     {
+        if (isInteracting || currentUseCount >= maxUseCount) return;
+
+        isInteracting = true;
+
         if (currentUseCount >= maxUseCount)
         {
             Debug.Log("더 이상 상호작용할 수 없습니다.");
@@ -42,17 +47,22 @@ public class ResourceEvent : MonoBehaviour, IInteractable
 
         if (dialogueManager != null && eventDialogue.Count > 0)
         {
-            dialogueManager.StartDialogue(eventDialogue);
-        }
-
-        if (currentUseCount >= maxUseCount) if (dialogueManager != null && eventDialogue.Count > 0)
-            {
+            // 대화가 끝날 때 실행될 함수 등록
+            // 기존 OnDialogueComplete에 추가로 'isInteracting = false'를 해줘야 함
+            dialogueManager.OnDialogueComplete = () => {
+                isInteracting = false; // 이제 다시 상호작용 가능
                 if (currentUseCount >= maxUseCount && destroyAfterInteract)
                 {
-                    dialogueManager.OnDialogueComplete = DestroySelf;
+                    DestroySelf();
                 }
-                dialogueManager.StartDialogue(eventDialogue);
-            }
+            };
+
+            dialogueManager.StartDialogue(eventDialogue);
+        }
+        else
+        {
+            isInteracting = false;
+        }
     }
     private void DestroySelf()
     {

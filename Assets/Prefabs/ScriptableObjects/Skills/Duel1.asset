@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdf5e2585dacef84da2287d63c324612, type: 3}
   m_Name: Duel1
   m_EditorClassIdentifier: 
-  actionName: 
+  actionName: "\uD380\uD1A0"
   damageValue: 0
   actionIcon: {fileID: -329867567, guid: 25320cdb70836be4eb6f5cb9a12f658e, type: 3}
   description: 
+  manaCost: 0

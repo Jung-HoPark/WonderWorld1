@@ -9,11 +9,13 @@ public class GameManager : MonoBehaviour
     
     [Header("Core Data")]
     public PlayerResourceManager playerRes;
+    public List<CharacterData> partyMembers;
 
     [Header("Scene Settings")]
     public string introSceneName = "StartOnlyOnce";
     public string stage1Name = "Stage1";
     public string stage2Name = "Stage2";
+    public string gameOverSceneName = "GameOver";
 
     void Awake()
     {
@@ -28,6 +30,27 @@ public class GameManager : MonoBehaviour
             return;
         }
         InitializeGame();
+    }
+    void Update()
+    {
+        CheckGameOver();
+    }
+    void CheckGameOver()
+    {
+        if (playerRes != null && playerRes.playerHeart <= 0)
+        {
+            TriggerGameOver();
+        }
+    }
+    public void TriggerGameOver()
+    {
+        Debug.Log("플레이어 사망! 게임오버 씬으로 이동합니다.");
+        // 사망 시 데이터 초기화 후 씬 이동
+        SceneManager.LoadScene(gameOverSceneName);
+    }
+    public void LoadNextStage(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
     public void InitializeGame()
     {

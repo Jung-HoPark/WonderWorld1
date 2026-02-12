@@ -6,7 +6,7 @@ using UnityEngine;
 public class CharacterData : ScriptableObject
 {
     public string characterName;
-    public int level;
+    public int level = 1;
     public float hp;
     public float atk;
     public int amount;  // 레벨업 시 hp 증가량

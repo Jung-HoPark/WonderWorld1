@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdf5e2585dacef84da2287d63c324612, type: 3}
   m_Name: Rip2
   m_EditorClassIdentifier: 
-  actionName: 
+  actionName: "\uD720\uC708\uB4DC"
   damageValue: 9
-  costMp: 5
   actionIcon: {fileID: 328778874, guid: 25320cdb70836be4eb6f5cb9a12f658e, type: 3}
   description: 
+  manaCost: 2

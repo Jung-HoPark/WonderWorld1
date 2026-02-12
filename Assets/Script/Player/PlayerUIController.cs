@@ -34,7 +34,7 @@ public class PlayerUIController : MonoBehaviour
     {
         foreach (Transform child in heartContainer) { Destroy(child.gameObject); }
         hearts.Clear();
-        for (int i = 0; i < resourceManager.maxPlayerHp; i++)
+        for (int i = 0; i < resourceManager.maxPlayerHeart; i++)
         {
             GameObject heart = Instantiate(heartPrefab, heartContainer);
             hearts.Add(heart);
@@ -44,7 +44,7 @@ public class PlayerUIController : MonoBehaviour
     {
         for (int i = 0; i < hearts.Count; i++)
         {
-            if (i < resourceManager.playerHp) hearts[i].SetActive(true);
+            if (i < resourceManager.playerHeart) hearts[i].SetActive(true);
             else hearts[i].SetActive(false);
         }
 

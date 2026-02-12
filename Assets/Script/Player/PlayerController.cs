@@ -22,12 +22,17 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
         if(interactIcon != null) interactIcon.SetActive(false);
     }
+    void Start()
+    {
+        canMove = true;
+    }
     void Update()
     {
         if (!canMove)
         {
             moveInput = Vector2.zero;
             anim.SetFloat("Speed", 0); // 멈춘 애니메이션 강제 적용
+            if (rb != null) rb.velocity = Vector2.zero;
             return;
         }
         // 1. 입력 받기 (WASD / 화살표)
@@ -57,6 +62,10 @@ public class PlayerController : MonoBehaviour
             PerformInteraction();
         }
     }
+    public void SetCanMove(bool value)
+    {
+        canMove = value;
+    }
     void CheckInteractable()
     {
         Collider2D hit = Physics2D.OverlapCircle(transform.position, interactRad, interactableLayer);
@@ -82,7 +91,11 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (!canMove) return;
+        if (!canMove)
+        {
+            rb.velocity = Vector2.zero;
+            return;
+        }
         rb.MovePosition(rb.position + moveInput * moveSpeed * Time.fixedDeltaTime);
     }
     private void OnDrawGizmos()

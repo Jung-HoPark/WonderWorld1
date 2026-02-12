@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BattleManager : MonoBehaviour
 {
@@ -23,6 +24,15 @@ public class BattleManager : MonoBehaviour
     public GameObject startBattleButton;
     public Image[] selectionSlots;
 
+    [Header("UI Bars")]
+    public Slider[] playerHPBars;
+    public Slider monsterHPBar;
+
+    [Header("Shared Resources")]
+    public PlayerResourceManager playerResource;
+    public Slider teamMpBar;
+    public TextMeshProUGUI heartText;
+
     [Header("Spawn Points (Ref)")]
     public Transform monsterSpawnPoint;
     public Transform[] playerSpawnPoints;
@@ -37,6 +47,38 @@ public class BattleManager : MonoBehaviour
 
     private int currentSelectionIndex = 0;
 
+    void Start()
+    {
+        if (playerResource != null)
+        {
+            playerResource.OnResourceChange += UpdateUIBars;
+        }
+    }
+    void UpdateUIBars()
+    {
+        // 1. 개별 캐릭터 HP 바
+        for (int i = 0; i < playerBattlers.Count; i++)
+        {
+            if (i < playerHPBars.Length)
+            {
+                playerHPBars[i].maxValue = playerBattlers[i].maxHp;
+                playerHPBars[i].value = playerBattlers[i].hp;
+            }
+        }
+        // 2. 팀 공용 MP 및 하트 UI
+        if (playerResource != null)
+        {
+            teamMpBar.maxValue = playerResource.maxPlayerMp;
+            teamMpBar.value = playerResource.playerMp;
+            heartText.text = $"x {playerResource.playerHeart}";
+        }
+        // 3. 몬스터 HP 바
+        if (monsterBattler != null)
+        {
+            monsterHPBar.maxValue = monsterBattler.maxHp;
+            monsterHPBar.value = monsterBattler.hp;
+        }
+    }
     public void SetupBattle(List<CharacterData> party, MonsterData monster)
     {
         playerBattlers.Clear();
@@ -55,46 +97,94 @@ public class BattleManager : MonoBehaviour
         {
             Debug.LogError("전달받은 몬스터 데이터가 Null입니다!");
         }
+        UpdateUIBars();
+
+        GenerateMonsterActions();
+        StartSelectionPhase();
     }
-    public void ExecuteTurn()
+    public void StartExecuteTurn()
     {
+        StartCoroutine(ExecuteTurnCoroutine());
+    }
+    IEnumerator ExecuteTurnCoroutine()
+    {
+        commandPanel.SetActive(false);
+        startBattleButton.SetActive(false);
+
         for (int i = 0; i < 3; i++)
         {
             if (i < playerActions.Count && i < monsterActions.Count)
             {
-                if (playerActions[i] != null && monsterActions[i] != null)
+                ActionData pAct = playerActions[i];
+                ActionData mAct = monsterActions[i];
+
+                if (pAct != null && mAct != null)
                 {
-                    CompareAndAct(i, playerActions[i], monsterActions[i]);
+                    characterNameText.text = $"{playerBattlers[i].name} VS 몬스터!";
+                    Debug.Log($"<color=cyan>[{i + 1}번 공방]</color> {playerBattlers[i].name}({pAct.actionName}) VS 몬스터({mAct.actionName})");
+
+                    yield return new WaitForSeconds(0.5f);
+
+                    CompareAndAct(i, pAct, mAct);
+
+                    yield return new WaitForSeconds(1.2f);
                 }
             }
-        }
-    }
-    int CalculateFinalDamage(BattleEntity attacker, ActionData action)
-    {
-        return Mathf.RoundToInt(attacker.atk + action.damageValue);
-    }
-    void CompareAndAct(int playerIndex, ActionData pAction, ActionData mAction)
-    {
-        // 1. 플레이어 최종 데미지 (공격력 * 스킬계수)
-        int playerFinalDmg = CalculateFinalDamage(playerBattlers[playerIndex], pAction);
 
-        // 2. 몬스터 최종 데미지
-        int monsterFinalDmg = CalculateFinalDamage(monsterBattler, mAction);
-
-        // 3. 판정 및 실행 (데미지가 높은 쪽만 공격 성공)
-        if (playerFinalDmg > monsterFinalDmg)
-        {
-            ApplyDamageToMonster(playerFinalDmg);
-            Debug.Log($"{playerBattlers[playerIndex].name} 승리! {playerFinalDmg} 데미지 부여");
+            if (monsterBattler.isDead) break;
         }
-        else if (monsterFinalDmg > playerFinalDmg)
+
+        if (monsterBattler.isDead)
         {
-            ApplyDamageToPlayer(monsterFinalDmg);
-            Debug.Log($"몬스터 승리! {monsterFinalDmg} 데미지 피격");
+            WinBattle();
         }
         else
         {
-            Debug.Log($"{playerIndex + 1}번째 공방: 서로의 공격이 상쇄되었습니다.");
+            ResetTurn();
+        }
+    }
+    public void ResetTurn()
+    {
+        currentSelectionIndex = 0;
+        playerActions.Clear();
+        for (int i = 0; i < 3; i++) playerActions.Add(null);
+
+        foreach (var slot in selectionSlots)
+        {
+            if (slot != null) slot.gameObject.SetActive(false);
+        }
+
+        GenerateMonsterActions();
+        UpdateCharacterSelectionUI();
+
+        commandPanel.SetActive(true);
+        startBattleButton.SetActive(false);
+
+        Debug.Log("새로운 턴");
+    }
+    void CompareAndAct(int playerIndex, ActionData pAction, ActionData mAction)
+    {
+        // 1. 최종 데미지 계산 (atk + damageValue)
+        int pFinalDmg = Mathf.RoundToInt(playerBattlers[playerIndex].atk + pAction.damageValue);
+        int mFinalDmg = Mathf.RoundToInt(monsterBattler.atk + mAction.damageValue);
+
+        // 2. 판정
+        if (pFinalDmg > mFinalDmg)
+        {
+            ApplyDamageToMonster(pFinalDmg);
+            Debug.Log($"<color=green>성공!</color> {playerBattlers[playerIndex].name}의 압승! ({pFinalDmg} vs {mFinalDmg})");
+        }
+        else if (mFinalDmg > pFinalDmg)
+        {
+            ApplyDamageToPlayer(mFinalDmg);
+            Debug.Log($"<color=red>실패!</color> 몬스터의 반격! ({mFinalDmg} vs {pFinalDmg})");
+        }
+        else
+        {
+            // 무승부 (0 데미지 연출)
+            ShowDamagePopup(monsterSpawnPoint.position + Vector3.up * 1.5f, 0);
+            ShowDamagePopup(playerSpawnPoints[playerIndex].position + Vector3.up * 1.5f, 0);
+            Debug.Log("<color=yellow>상쇄!</color> 두 공격의 위력이 같아 무효화되었습니다.");
         }
     }
     void ApplyDamageToMonster(int damage)
@@ -105,6 +195,7 @@ public class BattleManager : MonoBehaviour
             ShowDamagePopup(monsterSpawnPoint.position + Vector3.up * 1.5f, damage);
         }
         Debug.Log($"{monsterBattler.name} HP: {monsterBattler.hp}");
+        UpdateUIBars();
 
         if (monsterBattler.isDead) WinBattle();
     }
@@ -122,6 +213,26 @@ public class BattleManager : MonoBehaviour
             {
                 ShowDamagePopup(playerSpawnPoints[targetIdx].position + Vector3.up * 1.5f, damage);
             }
+            if (target.hp <= 0)
+            {
+                // PRM의 CanRevive() 사용 (하트 > 0 인지 체크)
+                if (playerResource.CanRevive())
+                {
+                    playerResource.ChangeHp(-1); // 하트 1개 감소
+                    target.hp = Mathf.RoundToInt(target.maxHp * 0.5f); // 50% 부활
+                    target.isDead = false;
+
+                    Debug.Log($"<color=yellow>{target.name} 부활!</color> 하트 사용.");
+                    ShowDamagePopup(playerSpawnPoints[targetIdx].position + Vector3.up * 1.5f, 777); // 부활 연출용
+                }
+                else
+                {
+                    target.isDead = true;
+                    playerSpawnPoints[targetIdx].gameObject.SetActive(false); // 캐릭터 숨기기
+                    Debug.Log($"{target.name} 쓰러짐...");
+                }
+            }
+            UpdateUIBars();
         }
     }
     void ShowDamagePopup(Vector3 worldPosition, int damage)
@@ -164,8 +275,15 @@ public class BattleManager : MonoBehaviour
             {
                 intentIcons[i].sprite = monsterActions[i].actionIcon; // ActionData에 등록한 아이콘
                 intentIcons[i].gameObject.SetActive(true);
+
+                var intentScript = intentIcons[i].GetComponent<MonsterIntent>();
+                if (intentScript != null)
+                {
+                    intentScript.currentIntentAction = monsterActions[i];
+                }
             }
         }
+
     }
     public void StartSelectionPhase()
     {
@@ -181,6 +299,11 @@ public class BattleManager : MonoBehaviour
     public void SelectPlayerAction(ActionData selectedAction)
     {
         if (currentSelectionIndex >= 3) return;
+
+        if (playerResource != null)
+        {
+            playerResource.ChangeMp(-selectedAction.manaCost);
+        }
 
         playerActions[currentSelectionIndex] = selectedAction;
         Debug.Log($"{playerBattlers[currentSelectionIndex].name} : {selectedAction.actionName} 예약");
@@ -225,6 +348,9 @@ public class BattleManager : MonoBehaviour
                     {
                         commandButtons[i].gameObject.SetActive(true);
                         commandButtons[i].SetAction(data.skillList[i]); // 버튼의 데이터 교체
+
+                        bool canAfford = playerResource.playerMp >= data.skillList[i].manaCost;
+                        commandButtons[i].GetComponent<Button>().interactable = canAfford;
                     }
                     else
                     {
@@ -234,15 +360,49 @@ public class BattleManager : MonoBehaviour
             }
         }
     }
+    public void CancelLastSelection()
+    {
+        if (currentSelectionIndex <= 0) return;
+        currentSelectionIndex--;
+
+        // 1. 소모했던 MP 복구
+        ActionData canceledAction = playerActions[currentSelectionIndex];
+        if (canceledAction != null && playerResource != null)
+        {
+            playerResource.ChangeMp(canceledAction.manaCost); // 다시 더해줌
+        }
+
+        playerActions[currentSelectionIndex] = null;
+
+        selectionSlots[currentSelectionIndex].gameObject.SetActive(false);
+        UpdateCharacterSelectionUI();
+
+        startBattleButton.SetActive(false);
+        commandPanel.SetActive(true);
+    }
     public void ResetSelection()
     {
         currentSelectionIndex = 0;
         playerActions.Clear();
         for (int i = 0; i < 3; i++) playerActions.Add(null);
     }
-    // --- 미구현 함수들 (에러 방지용) ---
-    void WinBattle() { Debug.Log("전투에서 승리했습니다!"); FinishBattle(); }
-    // ----------------------------------------------
+    void WinBattle()
+    {
+        Debug.Log("<color=yellow>전투 승리!</color>");
+        int rewardExp = 1000;
+        if (playerResource != null)
+        {
+            playerResource.Exp += rewardExp;
+            Debug.Log($"{rewardExp} EXP 획득! 현재 총 EXP: {playerResource.Exp}");
+        }
+
+        Invoke("ReturnToField", 2.0f);
+    }
+    void ReturnToField()
+    {
+        FinishBattle();
+        SceneManager.LoadScene("Stage2");
+    }
     public void FinishBattle()
     {
         foreach (var battler in playerBattlers)

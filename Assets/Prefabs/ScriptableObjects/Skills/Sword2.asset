@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdf5e2585dacef84da2287d63c324612, type: 3}
   m_Name: Sword2
   m_EditorClassIdentifier: 
-  actionName: "\uC911\uACF5\uACA9"
+  actionName: "\uC911\uAC80"
   damageValue: 6
-  costMp: 10
   actionIcon: {fileID: -492411673, guid: 25320cdb70836be4eb6f5cb9a12f658e, type: 3}
   description: 
+  manaCost: 4

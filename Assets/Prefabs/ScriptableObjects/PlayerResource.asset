@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35b2a5ccefdf74248b38c547df7b4e24, type: 3}
   m_Name: PlayerResource
   m_EditorClassIdentifier: 
-  playerHp: 3
+  playerHeart: 3
   playerMp: 50
   Exp: 0
-  maxPlayerHp: 5
-  initPlayerHp: 3
+  maxPlayerHeart: 5
+  initPlayerHeart: 3
   maxPlayerMp: 100
   initPlayerMp: 50

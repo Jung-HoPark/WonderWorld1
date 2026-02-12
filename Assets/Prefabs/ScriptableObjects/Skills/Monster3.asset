@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdf5e2585dacef84da2287d63c324612, type: 3}
   m_Name: Monster3
   m_EditorClassIdentifier: 
-  actionName: 
-  damageValue: 0
+  actionName: "\uAE68\uBB3C\uC5B4\uBD80\uC218\uAE30"
+  damageValue: 20
   actionIcon: {fileID: -192456917, guid: 25320cdb70836be4eb6f5cb9a12f658e, type: 3}
   description: 
+  manaCost: 0

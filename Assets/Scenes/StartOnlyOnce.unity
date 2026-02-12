@@ -309,9 +309,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerRes: {fileID: 11400000, guid: 9d9a12416cadec241ba2a124529f4cf8, type: 2}
+  partyMembers: []
   introSceneName: StartOnlyOnce
   stage1Name: Stage1
   stage2Name: Stage2
+  gameOverSceneName: GameOver
 --- !u!4 &1057698950
 Transform:
   m_ObjectHideFlags: 0
@@ -515,6 +517,9 @@ MonoBehaviour:
       \uC548\uB0B4\uD574\uB4DC\uB9B4 \uC548\uB0B4\uC778\uC785\uB2C8\uB2E4! "
   - sentence: "\uC774 \uAC8C\uC784\uC740 WASD \uB610\uB294 \uBC29\uD5A5\uD0A4\uB85C
       \uC774\uB3D9, \uC2A4\uD398\uC774\uC2A4\uBC14\uB85C \uC0C1\uD638\uC791\uC6A9\uC774
+      \uAC00\uB2A5\uD569\uB2C8\uB2E4."
+  - sentence: "v\uD0A4\uB97C \uB204\uB974\uBA74 \uBCF4\uC720\uD55C \uCE90\uB9AD\uD130\uB97C
+      \uD655\uC778\uD558\uC2DC\uACE0, \uB808\uBCA8\uC5C5 \uC2DC\uD0A4\uB294 \uAC83\uB3C4
       \uAC00\uB2A5\uD569\uB2C8\uB2E4."
   - sentence: "\uBD80\uC871\uD55C \uAC8C\uC784\uC774\uC9C0\uB9CC \uBD80\uB514 \uC9E7\uAC8C
       \uC990\uAE30\uB2E4 \uAC00\uC138\uC694!"

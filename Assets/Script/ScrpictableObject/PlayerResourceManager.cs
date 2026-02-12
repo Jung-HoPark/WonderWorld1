@@ -6,13 +6,13 @@ using UnityEngine;
 public class PlayerResourceManager : ScriptableObject
 {
     [Header("Shared Resources")]
-    public int playerHp;
+    public int playerHeart;
     public float playerMp;
     public int Exp;
 
     [Header("Default Settings")]
-    public int maxPlayerHp;
-    public int initPlayerHp;
+    public int maxPlayerHeart;
+    public int initPlayerHeart;
     public float maxPlayerMp;
     public float initPlayerMp;
 
@@ -20,7 +20,7 @@ public class PlayerResourceManager : ScriptableObject
 
     public void ResetData()
     {
-        playerHp = initPlayerHp;
+        playerHeart = initPlayerHeart;
         playerMp = initPlayerMp;
         Exp = 0;
         // UI에 초기화된 값을 알림
@@ -28,7 +28,7 @@ public class PlayerResourceManager : ScriptableObject
     }
     public void ChangeHp(int amount)
     {
-        playerHp = Mathf.Clamp(playerHp + amount, 0, maxPlayerHp);
+        playerHeart = Mathf.Clamp(playerHeart + amount, 0, maxPlayerHeart);
         OnResourceChange?.Invoke();
     }
 
@@ -38,12 +38,12 @@ public class PlayerResourceManager : ScriptableObject
         OnResourceChange?.Invoke();
     }
 
-    public bool CanRevive() => playerHp > 0;
+    public bool CanRevive() => playerHeart > 0;
     public bool CanEnhanceSkill(float cost) => playerMp >= cost;
 
     public void Initialize()
     {
-        playerHp = maxPlayerHp;
+        playerHeart = maxPlayerHeart;
         playerMp = (float)(maxPlayerMp * 0.5);
         Exp = 0;
     }

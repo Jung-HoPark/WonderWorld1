@@ -18,7 +18,7 @@ MonoBehaviour:
   atk: 9
   amount: 6
   amount2: 5
-  maxHp: 60
+  maxHp: 66
   isDead: 0
   modelPrefab: {fileID: 5550210598934326760, guid: 7e48b6f64166bf3469b1b7498d218af4, type: 3}
   skillList:

@@ -12,7 +12,7 @@ public class SceneTransferEvent : MonoBehaviour, IInteractable
         if (isGameClear)
         {
             Debug.Log("게임 클리어!");
-            GameManager.Instance.LoadNextStage("GameClearScene");
+            GameManager.Instance.LoadNextStage("GameClear");
         }
         else
         {

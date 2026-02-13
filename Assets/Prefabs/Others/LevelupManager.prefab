@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6723844788496124252
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7070082859453603983}
+  - component: {fileID: 8686125087404888154}
+  m_Layer: 0
+  m_Name: LevelupManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7070082859453603983
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6723844788496124252}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 215.80002, y: 161.4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8686125087404888154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6723844788496124252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b390a8a8d86a3a419a0131ea6f2e00e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerResource: {fileID: 11400000, guid: 9d9a12416cadec241ba2a124529f4cf8, type: 2}
+  partyMembers:
+  - {fileID: 11400000, guid: 5f414b0705133ee4e9a35ef9d53d94bc, type: 2}
+  - {fileID: 11400000, guid: 679009e65a45da64086f3214def9a318, type: 2}
+  - {fileID: 11400000, guid: 25f67e39de1c59040b267dbdfdc4a860, type: 2}
+  levelUpCanvas: {fileID: 0}
+  confirmPopup: {fileID: 0}
+  charInfoTexts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  charButtons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  popupExpText: {fileID: 0}
+  yesButton: {fileID: 0}

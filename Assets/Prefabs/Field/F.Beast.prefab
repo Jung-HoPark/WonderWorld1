@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5693566479917859388
+--- !u!1 &5680371282648944232
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3111752755281350977}
-  - component: {fileID: 3807607517605486809}
-  - component: {fileID: 5247559056386140714}
-  - component: {fileID: 4298795733119934965}
+  - component: {fileID: 1304798364740482867}
+  - component: {fileID: 8268309360846537279}
+  - component: {fileID: 2596050643665099154}
+  - component: {fileID: 6328207089751454830}
   m_Layer: 11
-  m_Name: BoneDog
+  m_Name: F.Beast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3111752755281350977
+--- !u!4 &1304798364740482867
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5693566479917859388}
+  m_GameObject: {fileID: 5680371282648944232}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24.28, y: -0.63, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -13.64, y: -4.34, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &3807607517605486809
+--- !u!212 &8268309360846537279
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5693566479917859388}
+  m_GameObject: {fileID: 5680371282648944232}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 25161269
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0da918879e4370445b921d007157061c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4aa316b6acffb2c41b5c71ce0474070a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -86,13 +86,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &5247559056386140714
+--- !u!58 &2596050643665099154
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5693566479917859388}
+  m_GameObject: {fileID: 5680371282648944232}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -118,16 +118,16 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.5295932, y: -0.48145056}
+  m_Offset: {x: -0.4365158, y: -0.48145056}
   serializedVersion: 2
-  m_Radius: 5.3520355
---- !u!114 &4298795733119934965
+  m_Radius: 8.547788
+--- !u!114 &6328207089751454830
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5693566479917859388}
+  m_GameObject: {fileID: 5680371282648944232}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d72192d96167cd7418f4bf1e4dd3c54e, type: 3}
@@ -136,11 +136,12 @@ MonoBehaviour:
   playerRes: {fileID: 11400000, guid: 9d9a12416cadec241ba2a124529f4cf8, type: 2}
   dialogueManager: {fileID: 0}
   player: {fileID: 3798300363972298985, guid: 27e9f5a67d49ba2408750fcccd120b6f, type: 3}
-  hpChange: -1
+  hpChange: -2
   mpChange: 0
-  expChange: 300
+  expChange: 500
   maxUseCount: 1
   destroyAfterInteract: 1
   eventDialogue:
-  - sentence: "\uBF08\uB85C \uB41C \uC774\uBE68\uC774 \uB36E\uCE5C\uB2E4!"
-  - sentence: "\uCCB4\uB825 1\uAC10\uC18C, \uACBD\uD5D8\uCE58 300 \uD68D\uB4DD"
+  - sentence: "\uC0AC\uB098\uC6B4 \uB9F9\uC218\uC758 \uC774\uBE68\uC774 \uB2F9\uC2E0\uC744
+      \uBB38\uB2E4"
+  - sentence: "\uCCB4\uB825 2\uAC10\uC18C, \uACBD\uD5D8\uCE58 500 \uD68D\uB4DD"

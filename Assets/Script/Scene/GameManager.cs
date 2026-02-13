@@ -17,6 +17,13 @@ public class GameManager : MonoBehaviour
     public string stage2Name = "Stage2";
     public string gameOverSceneName = "GameOver";
 
+    [Header("Position Save")]
+    public Vector3 lastOverworldPosition;
+    public string lastSceneName;
+
+    [Header("UI Reference")]
+    public GameObject uiCanvasRoot;
+
     void Awake()
     {
         if (Instance == null)
@@ -30,6 +37,30 @@ public class GameManager : MonoBehaviour
             return;
         }
         InitializeGame();
+    }
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        UpdateUIState(scene.name);
+    }
+    void UpdateUIState(string sceneName)
+    {
+        if (sceneName == "StartOnlyOnce" || sceneName == "BattleScene" ||
+            sceneName == "GameOver" || sceneName == "GameClear")
+        {
+            uiCanvasRoot.SetActive(false);
+        }
+        else
+        {
+            uiCanvasRoot.SetActive(true);
+        }
     }
     void Update()
     {
@@ -62,6 +93,12 @@ public class GameManager : MonoBehaviour
             // 2. [선택] 만약 인트로도 다시 보고 싶다면 아래 주석을 해제
             PlayerPrefs.DeleteKey("IntroPlayed");
         }
+    }
+    public void SavePosition(Vector3 pos, string sceneName)
+    {
+        lastOverworldPosition = pos;
+        lastSceneName = sceneName;
+        Debug.Log($"위치 저장 완료: {sceneName} / {pos}");
     }
     public void RestartGame()
     {

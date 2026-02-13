@@ -25,6 +25,12 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         canMove = true;
+        if (GameManager.Instance.lastSceneName == SceneManager.GetActiveScene().name)
+        {
+            transform.position = GameManager.Instance.lastOverworldPosition;
+            // 위치를 이동시킨 후 정보를 초기화 (계속 텔레포트되는 것 방지)
+            GameManager.Instance.lastSceneName = "";
+        }
     }
     void Update()
     {

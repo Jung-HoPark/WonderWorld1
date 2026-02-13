@@ -1,6 +1,7 @@
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -27,6 +28,10 @@ public class LevelupManager : MonoBehaviour
 
     void Update()
     {
+        string currentScene = SceneManager.GetActiveScene().name;
+        if (currentScene == "StartOnlyOnce" || currentScene == "BattleScene" || 
+            currentScene == "GameOver" || currentScene == "GameClear") return;
+
         // 1. V키로 열고 닫기
         if (Input.GetKeyDown(KeyCode.V))
         {

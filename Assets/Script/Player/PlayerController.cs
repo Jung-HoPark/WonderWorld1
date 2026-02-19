@@ -95,6 +95,12 @@ public class PlayerController : MonoBehaviour
             target?.Interact();
         }
     }
+    public void PlayDieAnimation()
+    {
+        canMove = false;
+        rb.velocity = Vector2.zero;
+        anim.SetTrigger("Death");
+    }
     void FixedUpdate()
     {
         if (!canMove)

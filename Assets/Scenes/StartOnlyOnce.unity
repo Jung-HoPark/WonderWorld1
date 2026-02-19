@@ -835,6 +835,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerUI
       objectReference: {fileID: 0}
+    - target: {fileID: 2757352952794821639, guid: e7c0d600bee8bd748a82fefbb9db1d19, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3496246689281897154, guid: e7c0d600bee8bd748a82fefbb9db1d19, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1072,6 +1076,10 @@ PrefabInstance:
     - target: {fileID: 6723844788496124252, guid: ffd276da2f80ff74b9cc01cbc9e5e27b, type: 3}
       propertyPath: m_Name
       value: LevelupManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6723844788496124252, guid: ffd276da2f80ff74b9cc01cbc9e5e27b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7070082859453603983, guid: ffd276da2f80ff74b9cc01cbc9e5e27b, type: 3}
       propertyPath: m_LocalPosition.x

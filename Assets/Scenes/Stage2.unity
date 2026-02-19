@@ -179,6 +179,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5317054848816691576, guid: 3eca936e4f0377b47b9b93b080c96503, type: 3}
+      propertyPath: m_SortingLayer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5317054848816691576, guid: 3eca936e4f0377b47b9b93b080c96503, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -2051962235
+      objectReference: {fileID: 0}
     - target: {fileID: 5360797147578048976, guid: 3eca936e4f0377b47b9b93b080c96503, type: 3}
       propertyPath: m_LocalScale.x
       value: 3
@@ -241,10 +249,13 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6190299875667521304, guid: 3eca936e4f0377b47b9b93b080c96503, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1299295144}
+    - targetCorrespondingSourceObject: {fileID: 6190299875667521304, guid: 3eca936e4f0377b47b9b93b080c96503, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1299295142}
     - targetCorrespondingSourceObject: {fileID: 6190299875667521304, guid: 3eca936e4f0377b47b9b93b080c96503, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1299295141}
+      addedObject: {fileID: 1299295143}
   m_SourcePrefab: {fileID: 100100000, guid: 3eca936e4f0377b47b9b93b080c96503, type: 3}
 --- !u!4 &155485979 stripped
 Transform:
@@ -1896,7 +1907,52 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6190299875667521304, guid: 3eca936e4f0377b47b9b93b080c96503, type: 3}
   m_PrefabInstance: {fileID: 152543597}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1299295141
+--- !u!61 &1299295142
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299295140}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.04510784, y: -0.6996878}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.56, y: 2.56}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.319426, y: 0.76968753}
+  m_EdgeRadius: 0
+--- !u!114 &1299295143
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1905,13 +1961,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1299295140}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 273ef90b037fc144ba0f5b0940c468cb, type: 3}
+  m_Script: {fileID: 11500000, guid: dc285a5cdacefaf4cbeb1a67ae07b4f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSceneName: BattleScene
-  isGameClear: 0
---- !u!61 &1299295142
-BoxCollider2D:
+  battleSceneName: BattleScene
+--- !u!58 &1299295144
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1942,19 +1997,9 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0451079, y: 0.09773421}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.56, y: 2.56}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 2.319426, y: 2.3645315}
-  m_EdgeRadius: 0
+  m_Radius: 1.28
 --- !u!1 &1316472430
 GameObject:
   m_ObjectHideFlags: 0
@@ -24892,7 +24937,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2309982264397279172, guid: a1f3e13888501c74c85c9daebf7f1a44, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4657965590431629270, guid: a1f3e13888501c74c85c9daebf7f1a44, type: 3}
       propertyPath: m_LocalPosition.x

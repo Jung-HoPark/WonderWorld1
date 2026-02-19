@@ -76,6 +76,7 @@ public class GameManager : MonoBehaviour
     public void TriggerGameOver()
     {
         Debug.Log("플레이어 사망! 게임오버 씬으로 이동합니다.");
+        if (uiCanvasRoot != null) uiCanvasRoot.SetActive(false);
         // 사망 시 데이터 초기화 후 씬 이동
         SceneManager.LoadScene(gameOverSceneName);
     }

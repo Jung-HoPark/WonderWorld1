@@ -8,6 +8,7 @@ public class BattleTrigger : MonoBehaviour, IInteractable
 
     public void Interact()
     {
+        GameManager.Instance.SavePosition(transform.position, UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
         UnityEngine.SceneManagement.SceneManager.LoadScene(battleSceneName);
     }
 }

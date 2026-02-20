@@ -12,9 +12,11 @@ public class GameManager : MonoBehaviour
     public List<CharacterData> partyMembers;
 
     [Header("Scene Settings")]
+    public string titleSceneName = "TitleScene";
     public string introSceneName = "StartOnlyOnce";
     public string stage1Name = "Stage1";
     public string stage2Name = "Stage2";
+    public string battleSceneName = "BattleScene";
     public string gameOverSceneName = "GameOver";
 
     [Header("Position Save")]
@@ -23,6 +25,8 @@ public class GameManager : MonoBehaviour
 
     [Header("UI Reference")]
     public GameObject uiCanvasRoot;
+
+    private bool isGameOver = false;
 
     void Awake()
     {
@@ -52,8 +56,8 @@ public class GameManager : MonoBehaviour
     }
     void UpdateUIState(string sceneName)
     {
-        if (sceneName == "StartOnlyOnce" || sceneName == "BattleScene" ||
-            sceneName == "GameOver" || sceneName == "GameClear")
+        if (sceneName == titleSceneName || sceneName == introSceneName || sceneName == battleSceneName ||
+            sceneName == gameOverSceneName || sceneName == "GameClear")
         {
             uiCanvasRoot.SetActive(false);
         }
@@ -62,19 +66,43 @@ public class GameManager : MonoBehaviour
             uiCanvasRoot.SetActive(true);
         }
     }
+    public void OnClickStartGame()
+    {
+        // 이미 인트로를 봤는지 확인 (0이면 안 봄, 1이면 봄)
+        int introPlayed = PlayerPrefs.GetInt("IntroPlayed", 0);
+
+        if (introPlayed == 0)
+        {
+            // 인트로를 본 적이 없다면 인트로 씬으로 이동
+            SceneManager.LoadScene(introSceneName);
+        }
+        else
+        {
+            // 이미 봤다면 바로 Stage1으로 이동
+            SceneManager.LoadScene(stage1Name);
+        }
+    }
     void Update()
     {
+        if (isGameOver) return;
         CheckGameOver();
     }
     void CheckGameOver()
     {
-        if (playerRes != null && playerRes.playerHeart <= 0)
+        string currentScene = SceneManager.GetActiveScene().name;
+
+        // 게임 중인 씬(Stage1, Stage2)에서만 사망 체크를 하도록 제한
+        if (currentScene == stage1Name || currentScene == stage2Name || currentScene == battleSceneName)
         {
-            TriggerGameOver();
+            if (playerRes != null && playerRes.playerHeart <= 0)
+            {
+                TriggerGameOver();
+            }
         }
     }
     public void TriggerGameOver()
     {
+        isGameOver = true;
         Debug.Log("플레이어 사망! 게임오버 씬으로 이동합니다.");
         if (uiCanvasRoot != null) uiCanvasRoot.SetActive(false);
         // 사망 시 데이터 초기화 후 씬 이동
@@ -89,6 +117,7 @@ public class GameManager : MonoBehaviour
         if (playerRes != null)
         {
             playerRes.ResetData();
+            isGameOver = false;
             Debug.Log("플레이어 데이터가 초기화되었습니다.");
 
             // 2. [선택] 만약 인트로도 다시 보고 싶다면 아래 주석을 해제
@@ -104,7 +133,7 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         InitializeGame();
-        SceneManager.LoadScene(introSceneName);
+        SceneManager.LoadScene(titleSceneName);
     }
     public void HardRestart()
     {

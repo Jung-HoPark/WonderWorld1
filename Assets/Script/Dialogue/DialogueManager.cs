@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -101,6 +102,15 @@ public class DialogueManager : MonoBehaviour
         if (introManager != null)
         {
             introManager.OnIntroComplete();
+        }
+
+        if (SceneManager.GetActiveScene().name == "StartOnlyOnce")
+        {
+            PlayerPrefs.SetInt("IntroPlayed", 1);
+            PlayerPrefs.Save(); // 데이터 강제 저장
+
+            // 인트로가 끝났으니 Stage1으로 이동 (IntroManager가 수행하게 해도 됨)
+            SceneManager.LoadScene("Stage1");
         }
     }
 }
